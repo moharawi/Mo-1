@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html>
+	
+	<head>
+		<meta charset="utf-8" />
+		<title>SIPS Prototype 0.3</title>
+		<link rel="stylesheet" href="css/styles.css" type="text/css">
+		<link rel="stylesheet" href="css/d3.css" type="text/css">
+		<link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+		
+		<!--[if IE]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		
+		<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+		<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCwuY8RUgBX21PcZKxkmgQB4plcKT7Vlpo&libraries=visualization&sensor=false"></script>
+		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+		
+		
+		<script type="text/javascript" src="js/dsaldata.js"></script>
+		<script type="text/javascript" src="js/SAWR.js"></script>
+		<script type="text/javascript" src="js/SAWR2.js"></script>
+		<script type="text/javascript" src="js/visobjects.js"></script>
+		<script type="text/javascript" src="js/SimpleWater.js"></script>
+		<script type="text/javascript" src="js/graph.js"></script>
+		<script type="text/javascript" src="js/maps.js"></script>
+		<script type="text/javascript" src="js/paulmain.js"></script>
+		
+		
+		
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+		<script type="text/javascript" src="js/functions.js"></script>
+		<script type="text/javascript" src="js/interactions.js"></script>
+		<script type="text/javascript" src="js/evaluations.js"></script>
+		<script type="text/javascript" src="js/d3.js"></script>
+		
+		<script src="js/jquery-ui-1.8.23.custom.min.js"></script>
+		<script src="http://d3js.org/d3.v2.js"></script>
+
+	</head>
+	
+	
+	<body onload="initialize(); initializeSize();">
+		
+		<header class="main-header-wrapper">
+			<div class="main-system">
+				<img src="img/sips.png"/>
+				<h1>SIPS</h1>
+				<span class="logout-icon"><a href="login.html">logout</a></span>
+			</div>
+			
+			<div class="main-user">
+				<nav>
+					<ul>
+						<li class="main-icon"><a href="main.html">Main</a></li>
+						<li class="simulation-icon selected"><a href="simulation.html">Simulation</a></li>
+						<li class="reporting-icon"><a href="reporting.html">Reporting</a></li>
+						<li class="setting-icon"><a href="#">Settings</a></li>
+					</ul>
+				</nav>
+				<h2> Bonjour, <span class="main-usernmae">Mohammad</span></h2>
+			</div>
+		</header><!--End header-->
+		
+		
+		<div class="sim-wrapper">
+			
+			<div id="sim-header">
+				<p><span class="sim-selected-case">Selected Case Title</span> /</p>
+				<div id="sim-scenario-selector">
+					<select>
+						<option value="scenario1">Scenario 1</option>
+						<option value="scenario2">Scenario 2</option>
+						<option value="scenario3">Scenario 3</option>
+  					</select>
+  					<span class="subsetting-icon">setting</span>
+				</div>
+				<div id="sim-scenario-run">run</div>
+				<div id="sim-scenario-opt">
+					<div class="sim-dv-wrapper-icon">Hide DVs</div>
+					<div class="sim-kpi-wrapper-icon">Hide KPIs</div>
+				</div>
+			</div><!-- End of Simulation Header -->
+			
+			<div id="sim-content">
+			
+				<!-- ................................................ DV ................................................ -->
+				
+				<div id="sim-dv-container">
+					<div id="sim-dv-header" class="sim-window-header">
+						<h2>Decision Variables</h2>
+						<ul class="sim-window-header-icon">
+							<!-- <li class="min-icon">min</li> -->
+						</ul>
+					</div>
+					
+					<div id="sim-dv-content">
+						
+						<div id="sim-dv-db-container" class="sim-subwindow-container">
+							<div id="sim-dv-db-header" class="sim-window-header sim-subwindow-header">
+								<h3>Database DVs</h3>
+								<ul class="sim-window-header-icon">
+									<li class="min-icon">min</li>
+									<!-- <li class="list-view-icon">list</li> -->
+								</ul>
+							</div><!-- End of Database DVs Header-->
+							
+							<div id="sim-dv-db-content">
+								<div id="sim-dv-db-content-list" class="sim-view-list sim-subwindow-content">
+									<!--
+									<section id="dv-catg-drivers">
+										<h4>Drivers</h4>
+										<ul>
+											<li>
+												<span> > </span>
+												<img />
+												<p>GDP</p>
+												<ul class="sim-subicon">
+													<li class="add-icon">add</li>
+													<li class="show-icon">hide</li>
+													<li class="imprtnt-icon">imprt</li>
+												</ul>
+											</li>
+											<li>
+												<span> > </span>
+												<img />
+												<p>Population</p>
+												<ul class="sim-subicon">
+													<li class="add-icon">add</li>
+													<li class="show-icon">hide</li>
+													<li class="imprtnt-icon">imprt</li>
+												</ul>
+											</li>
+										</ul>
+									</section>
+									<section id="dv-catg-transport">
+										<h4>Transportation</h4>
+										<ul>
+											<li>
+												<span> > </span>
+												<img />
+												<p>Trans 1</p>
+												<ul class="sim-subicon">
+													<li class="add-icon">add</li>
+													<li class="show-icon">hide</li>
+													<li class="imprtnt-icon">imprt</li>
+												</ul>
+											</li>
+											<li>
+												<span> > </span>
+												<img />
+												<p>Trans 2</p>
+												<ul class="sim-subicon">
+													<li class="add-icon">add</li>
+													<li class="show-icon">hide</li>
+													<li class="imprtnt-icon">imprt</li>
+												</ul>
+											</li>
+											<li>
+												<span> > </span>
+												<img />
+												<p>Trans 3</p>
+												<ul class="sim-subicon">
+													<li class="add-icon">add</li>
+													<li class="show-icon">hide</li>
+													<li class="imprtnt-icon">imprt</li>
+												</ul>
+											</li>
+											<li>
+												<span> > </span>
+												<img />
+												<p>Trans 4</p>
+												<ul class="sim-subicon">
+													<li class="add-icon">add</li>
+													<li class="show-icon">hide</li>
+													<li class="imprtnt-icon">imprt</li>
+												</ul>
+											</li>
+											<li>
+												<span> > </span>
+												<img />
+												<p>Trans 5</p>
+												<ul class="sim-subicon">
+													<li class="add-icon">add</li>
+													<li class="show-icon">hide</li>
+													<li class="imprtnt-icon">imprt</li>
+												</ul>
+											</li>
+										</ul>
+									</section>
+									<section id="dv-catg-water">
+										<h4>Water</h4>
+										<ul>
+											<li>
+												<span> > </span>
+												<img />
+												<p>Water 1</p>
+												<ul class="sim-subicon">
+													<li class="add-icon">add</li>
+													<li class="show-icon">hide</li>
+													<li class="imprtnt-icon">imprt</li>
+												</ul>
+											</li>
+											<li>
+												<span> > </span>
+												<img />
+												<p>Water 2</p>
+												<ul class="sim-subicon">
+													<li class="add-icon">add</li>
+													<li class="show-icon">hide</li>
+													<li class="imprtnt-icon">imprt</li>
+												</ul>
+											</li>
+										</ul>
+									</section>
+									<section id="dv-catg-energy">
+										<h4>Energy</h4>
+										<ul>
+											<li>
+												<span> > </span>
+												<img />
+												<p>Energy 1</p>
+												<ul class="sim-subicon">
+													<li class="add-icon">add</li>
+													<li class="show-icon">hide</li>
+													<li class="imprtnt-icon">imprt</li>
+												</ul>
+											</li>
+											<li>
+												<span> > </span>
+												<img />
+												<p>Energy 2</p>
+												<ul class="sim-subicon">
+													<li class="add-icon">add</li>
+													<li class="show-icon">hide</li>
+													<li class="imprtnt-icon">imprt</li>
+												</ul>
+											</li>
+										</ul>
+									</section>-->
+								</div><!-- End of Database DVs Content List View -->
+								
+								<div id="sim-dv-db-content-block" class="sim-view-block sim-subwindow-content">
+									<div id="sim-dv-db-content-block-header" class="sim-view-block-header">
+										<ul>
+											<!--
+											<li class="sim-view-block-header-selected">Drivers</li>
+											<li>Transport</li>
+											<li>Water</li>
+											<li>Energy</li>-->
+										</ul>
+									</div><!-- End of Database DVs Content Block Header -->
+									<div id="sim-dv-db-content-block-content" class="sim-view-block-content">
+										<!--
+										<section id="dv-catg-drivers">
+											<h4>Drivers</h4>
+											<ul>
+												<li>
+													<img />
+													<p>GDP</p>
+												</li>
+												<li>
+													<img />
+													<p>Population</p>
+												</li>
+											</ul>
+										</section>
+										<section id="dv-catg-transport">
+											<h4>Transportation</h4>
+											<ul>
+												<li>
+													<img />
+													<p>Trans 1</p>
+												</li>
+												<li>
+													<img />
+													<p>Trans 1</p>
+												</li>
+												<li>
+													<img />
+													<p>Trans 1</p>
+												</li>
+												<li>
+													<img />
+													<p>Trans 1</p>
+												</li>
+												<li>
+													<img />
+													<p>Trans 1</p>
+												</li>
+												<li>
+													<img />
+													<p>Trans 1</p>
+												</li>
+												<li>
+													<img />
+													<p>Trans 1</p>
+												</li>
+												<li>
+													<img />
+													<p>Trans 1</p>
+												</li>
+												<li>
+													<img />
+													<p>Trans 1</p>
+												</li>
+												<li>
+													<img />
+													<p>Trans 1</p>
+												</li>
+												<li>
+													<img />
+													<p>Trans 1</p>
+												</li>
+												<li>
+													<img />
+													<p>Trans 2</p>
+												</li>
+												<li>
+													<img />
+													<p>Trans 3</p>
+												</li>
+												<li>
+													<img />
+													<p>Trans 4</p>
+												</li>
+												<li>
+													<img />
+													<p>Trans 5</p>
+												</li>
+											</ul>
+										</section>
+										<section id="dv-catg-water">
+											<h4>Water</h4>
+											<ul>
+												<li>
+													<img />
+													<p>Water 1</p>
+												</li>
+												<li>
+													<img />
+													<p>Water 2</p>
+												</li>
+												<li>
+													<img />
+													<p>Water 3</p>
+												</li>
+												<li>
+													<img />
+													<p>Water 4</p>
+												</li>
+											</ul>
+										</section>
+										<section id="dv-db-catg-energy-h">
+											<h4>Energy</h4>
+											<ul>
+												<li>
+													<img />
+													<p>Energy 1</p>
+												</li>
+												<li>
+													<img />
+													<p>Energy 2</p>
+												</li>
+											</ul>
+										</section>-->
+									</div><!-- End of Database DVs Content Block Content -->
+									
+									<div id="sim-dv-db-content-desc-container">
+										<div id="sim-dv-db-content-block-desc-header" class="sim-window-header sim-subwindow-header">
+											<h3>*selected DV*</h3>
+											<ul class="sim-window-header-icon">
+												<li class="cancel-icon">cancel</li>
+											</ul>
+										</div><!-- End of Database DVs DB Content Description Header -->
+										<div id="sim-dv-db-content-block-desc-content-wrapper">
+											<div id="sim-dv-db-content-block-desc-content">
+												<div class="desc-content-info desc-content-align">
+													<h4>*selected DV Extended Title*</h4>
+													<p>Description falls into here...</p>
+												</div>
+												<div class="desc-content-attr desc-content-align">
+													<h5>Attributes</h5>
+													<ul><!--
+														<li>*Selected DV Attribute 1*</li>
+														<li>*Selected DV Attribute 2*</li>-->
+													</ul>
+												</div>
+												<div class="desc-content-add desc-content-align">
+													<input type="button" value="Add DV" />
+												</div>
+											</div><!-- End of Database DVs DB Content Description Content -->
+										</div><!-- End of Database DVs DB Content Description Content Wrapper -->
+									</div><!-- End of Database DVs DB Content Description Container -->
+									
+								</div><!-- End of Database DVs Content Block View -->
+								
+							</div><!-- End of Database DVs Content -->
+							
+						</div><!-- End of Database DVs -->
+						
+						
+						<div id="sim-dv-my-container" class="sim-subwindow-container">
+							
+							<div id="sim-dv-my-header" class="sim-window-header sim-subwindow-header">
+								<h3>My DVs</h3>
+								<ul class="sim-window-header-icon">
+									<li class="min-icon">min</li>
+									<!-- <li class="list-view-icon">list</li> -->
+								</ul>
+							</div><!-- End of My DVs Header-->
+							
+							<div id="sim-dv-my-content">
+								
+								<div id="sim-dv-my-content-list" class="sim-view-list sim-subwindow-content">
+									<!--<section id="dv-my-catg-drivers">
+										<h4>Water</h4>
+											<ul>
+												<li>
+													<span> > </span>
+													<img />
+													<p>Water 1</p>
+													<ul class="sim-subicon">
+														<li class="add-icon">add</li>
+														<li class="show-icon">hide</li>
+														<li class="imprtnt-icon">imprt</li>
+													</ul>
+												</li>
+												<li>
+													<span> > </span>
+													<img />
+													<p>Water 2</p>
+													<ul class="sim-subicon">
+														<li class="add-icon">add</li>
+														<li class="show-icon">hide</li>
+														<li class="imprtnt-icon">imprt</li>
+													</ul>
+												</li>
+											</ul>
+									</section>
+									<section id="dv-my-catg-transport">
+										<h4>Transportation</h4>
+											<ul>
+												<li>
+													<span> > </span>
+													<img />
+													<p>Trans 1</p>
+													<ul class="sim-subicon">
+														<li class="add-icon">add</li>
+														<li class="show-icon">hide</li>
+														<li class="imprtnt-icon">imprt</li>
+													</ul>
+												</li>
+												<li>
+													<span> > </span>
+													<img />
+													<p>Trans 2</p>
+													<ul class="sim-subicon">
+														<li class="add-icon">add</li>
+														<li class="show-icon">hide</li>
+														<li class="imprtnt-icon">imprt</li>
+													</ul>
+												</li>
+												<li>
+													<span> > </span>
+													<img />
+													<p>Trans 3</p>
+													<ul class="sim-subicon">
+														<li class="add-icon">add</li>
+														<li class="show-icon">hide</li>
+														<li class="imprtnt-icon">imprt</li>
+													</ul>
+												</li>
+												<li>
+													<span> > </span>
+													<img />
+													<p>Trans 4</p>
+													<ul class="sim-subicon">
+														<li class="add-icon">add</li>
+														<li class="show-icon">hide</li>
+														<li class="imprtnt-icon">imprt</li>
+													</ul>
+												</li>
+												<li>
+													<span> > </span>
+													<img />
+													<p>Trans 5</p>
+													<ul class="sim-subicon">
+														<li class="add-icon">add</li>
+														<li class="show-icon">hide</li>
+														<li class="imprtnt-icon">imprt</li>
+													</ul>
+												</li>
+											</ul>
+										</section>
+									</section>
+									<section id="dv-my-catg-water">
+										
+									</section>
+									<section id="dv-my-catg-energy">
+										
+									</section>-->
+								
+								</div><!-- End of My DVs Content List View -->
+								
+								<div id="sim-selected-dv-container" class="">
+									<div id="sim-selected-dv-header" class="">
+										<div class="sim-selected-dv-header-title">
+											<h3>*Section h4*</h3>
+											<h4>*Section p item*</h4>
+										</div>
+										<input type="button" value="Done"/>
+									</div><!-- End of Selected DV View Header-->
+									
+									<div id="sim-selected-dv-content">
+										<div id="sim-dv-attr-container">
+											<div class="attr-wrap-line">
+												<label for="scale-level" id="scale-level-label">Scale</label>
+												<select id="scale-level">
+													<option value="national">National</option>
+													<option value="riyadh">Riyadh</option>
+													<option value="makkah">Makkah</option>
+													<option value="qasim">Qasim</option>
+													<option value="najran">Najran</option>
+							  					</select>
+												<label class="error" for="scale-level" id="scale-level-error">***</label>
+											</div>
+											<div class="attr-wrap-line">
+												<label for="dv-attr-catg-num" id="dv-attr-catg-num-label">DV Attr Name</label>
+												<input type="number" name="dv-attr-catg-name" id="dv-attr-catg-num" />
+												<label class="error" for="dv-attr-catg-num" id="dv-attr-catg-num-error">***</label>
+											</div>
+											<div class="attr-wrap-line">
+												<input type="button" value="Add" />
+											</div>
+										</div><!-- End of Added Attribute Container-->
+										
+										<div id="sim-dv-attr-added-container">
+										
+											<div class="sim-attr-added-item">
+												<div class="sim-attr-added-item-header sim-window-header sim-subwindow-header">
+													<h3>*Added Scale*</h3>
+													<ul class="sim-window-header-icon">
+														<li class="delete-icon">del</li>
+														<li class="save-icon">sve</li>
+														<li class="cancel-icon">cncl</li>
+														<li class="edit-icon">edt</li>
+													</ul>
+												</div><!-- End of Added Item Header-->
+												<div class="sim-attr-added-item-content">
+													<div>Label1: val1</div>
+													<div>Label2: val2</div>
+												</div><!-- End of Added Item Content-->
+											</div><!-- End of Added Attribute Item-->
+											
+											<div class="sim-attr-added-item">
+												<div class="sim-attr-added-item-header sim-window-header sim-subwindow-header">
+													<h3>*Added Scale*</h3>
+													<ul class="sim-window-header-icon">
+														<li class="delete-icon">del</li>
+														<li class="save-icon">sve</li>
+														<li class="cancel-icon">cncl</li>
+														<li class="edit-icon">edt</li>
+													</ul>
+												</div><!-- End of Added Item Header-->
+												<div class="sim-attr-added-item-content">
+													<div>Label1: val1</div>
+													<div>Label2: val2</div>
+												</div><!-- End of Added Item Content-->
+											</div><!-- End of Added Attribute Item-->
+									
+										</div><!-- End of Added Attribute Container -->
+									</div><!-- End of Selected DV Content -->
+							
+								</div><!-- End of Selected DV Container -->
+							
+							</div><!-- End of My DVs Content -->
+							
+							
+						
+						</div><!-- End of My DVs -->
+							
+						<div id="sim-dv-shrd-container" class="sim-subwindow-container">
+							<div id="sim-dv-shrd-header" class="sim-window-header sim-subwindow-header">
+								<h3>Shared DVs</h3>
+								<ul class="sim-window-header-icon">
+									<li class="min-icon">min</li>
+									<!-- <li class="list-view-icon">list</li> -->
+								</ul>
+							</div><!-- End of Shared DVs Header-->
+							
+							<div id="sim-dv-shrd-content-list" class="sim-view-list sim-subwindow-content">
+								<!--<section id="dv-shrd-catg-drivers">
+									<h4>Drivers</h4>
+									<ul>
+										<li>
+											<span> > </span>
+											<img />
+											<p>GDP</p>
+											<ul class="sim-subicon">
+												<li class="add-icon">add</li>
+												<li class="show-icon">hide</li>
+												<li class="imprtnt-icon">imprt</li>
+											</ul>
+										</li>
+										<li>
+											<span> > </span>
+											<img />
+											<p>Population</p>
+											<ul class="sim-subicon">
+												<li class="add-icon">add</li>
+												<li class="show-icon">hide</li>
+												<li class="imprtnt-icon">imprt</li>
+											</ul>
+										</li>
+									</ul>
+								</section>
+								<section id="dv-shrd-catg-transport">
+									<h4>Transportation</h4>
+									<ul>
+										<li>
+											<span> > </span>
+											<img />
+											<p>Trans 1</p>
+											<ul class="sim-subicon">
+												<li class="add-icon">add</li>
+												<li class="show-icon">hide</li>
+												<li class="imprtnt-icon">imprt</li>
+											</ul>
+										</li>
+										<li>
+											<span> > </span>
+											<img />
+											<p>Trans 2</p>
+											<ul class="sim-subicon">
+												<li class="add-icon">add</li>
+												<li class="show-icon">hide</li>
+												<li class="imprtnt-icon">imprt</li>
+											</ul>
+										</li>
+										<li>
+											<span> > </span>
+											<img />
+											<p>Trans 3</p>
+											<ul class="sim-subicon">
+												<li class="add-icon">add</li>
+												<li class="show-icon">hide</li>
+												<li class="imprtnt-icon">imprt</li>
+											</ul>
+										</li>
+										<li>
+											<span> > </span>
+											<img />
+											<p>Trans 4</p>
+											<ul class="sim-subicon">
+												<li class="add-icon">add</li>
+												<li class="show-icon">hide</li>
+												<li class="imprtnt-icon">imprt</li>
+											</ul>
+										</li>
+										<li>
+											<span> > </span>
+											<img />
+											<p>Trans 5</p>
+											<ul class="sim-subicon">
+												<li class="add-icon">add</li>
+												<li class="show-icon">hide</li>
+												<li class="imprtnt-icon">imprt</li>
+											</ul>
+										</li>
+									</ul>
+								</section>
+								<section id="dv-shrd-catg-water">
+									<h4>Water</h4>
+									<ul>
+										<li>
+											<span> > </span>
+											<img />
+											<p>Water 1</p>
+											<ul class="sim-subicon">
+												<li class="add-icon">add</li>
+												<li class="show-icon">hide</li>
+												<li class="imprtnt-icon">imprt</li>
+											</ul>
+										</li>
+										<li>
+											<span> > </span>
+											<img />
+											<p>Water 2</p>
+											<ul class="sim-subicon">
+												<li class="add-icon">add</li>
+												<li class="show-icon">hide</li>
+												<li class="imprtnt-icon">imprt</li>
+											</ul>
+										</li>
+									</ul>
+								</section>
+								<section id="dv-shrd-catg-energy">
+									<h4>Energy</h4>
+									<ul>
+										<li>
+											<span> > </span>
+											<img />
+											<p>Energy 1</p>
+											<ul class="sim-subicon">
+												<li class="add-icon">add</li>
+												<li class="show-icon">hide</li>
+												<li class="imprtnt-icon">imprt</li>
+											</ul>
+										</li>
+										<li>
+											<span> > </span>
+											<img />
+											<p>Energy 2</p>
+											<ul class="sim-subicon">
+												<li class="add-icon">add</li>
+												<li class="show-icon">hide</li>
+												<li class="imprtnt-icon">imprt</li>
+											</ul>
+										</li>
+									</ul>
+								</section>-->
+							</div><!-- End of Shared DVs Content List View -->
+						</div><!-- End of Shared DVs -->
+						
+					</div><!-- End of DV Content -->
+				</div><!-- End of DV Container -->
+				
+				<!-- ................................................ VIS ................................................ -->
+				
+				<div id="sim-vis-container">
+					<div id="sim-vis-header" class="sim-window-header sim-extend">
+						<h2>Visualization View</h2>
+						<ul class="sim-window-header-icon">
+							<!-- <li class="min-icon">min</li> -->
+							<li class="drivers-icon">driver</li>
+							<li class="map-view-icon">map</li>
+							<li class="othr-view-icon">othr</li>
+						</ul>
+					</div><!-- End of Vis Container Header -->
+					
+					<div id="sim-vis-content" class="right-shadow">
+						<div id="sim-vis-map" class="right-shadow">
+							
+						</div><!-- End of Vis Map -->
+						
+						<div id="sim-vis-other" class="right-shadow">
+							
+							<div class='chart' id='chart-2'>
+								<pre class='code'>
+								var circle = svg.selectAll("circle");
+								</pre>
+								<button>Run</button>
+							</div>
+							
+							<div class='chart' id='chart-13'>
+								<pre class='code'>
+								var circle = svg.selectAll("circle")
+								    .data([32, 57, 293], String);
+								
+								circle.enter().append("circle")
+								    .attr("cy", 90)
+								    .attr("cx", String)
+								    .attr("r", Math.sqrt);
+								
+								circle.exit().remove();
+								</pre>
+								<button>Run</button>
+							</div>
+							
+						</div><!-- End of Vis Other -->
+						
+						
+					
+					</div><!-- End of Vis Content -->
+					
+					<div id="sim-vis-drivers-container">
+						<div id="sim-vis-drivers">
+							<span class="reg-layer">regions</span>
+							<span class="water-layer">water plants</span>
+							<span class="power-layer">power plants</span>
+							<div id="myd3test" class="mycssd3test"></div>
+						</div>
+					</div>
+					
+				</div><!-- End of Vis Container -->
+				
+				<!-- ................................................ Temporal ................................................ -->
+				
+				<div id="sim-time-container">
+					
+					<div id="sim-loading">
+						<span class="sim-time-loader"></span>
+					</div><!-- End of Sim Loading -->
+					
+					<div id="sim-time-control-left">
+						<span class="pause-icon pause sim-time-controler-align">P</span>
+						<span class="run-icon run sim-time-controler-align">R</span>
+						<span class="step-left-icon step-left sim-time-controler-align">SL</span>
+						<span class="time-label">1981</span>
+						<span class="step-right-icon step-right sim-time-controler-align">SR</span>
+					</div><!-- End of Sim Controler Left -->
+					
+					<div id="sim-time-control-right">
+						<div id="time-line-wrapper">
+							<span class="time-line"></span>
+							<span class="time-mark"></span>
+						</div>
+					</div><!-- End of Sim Controler Right -->
+					
+				</div><!-- End of Time Container -->
+				
+				<!-- ................................................ KPI ................................................ -->
+				
+				<div id="sim-kpi-container">
+					
+					<div id="sim-kpi-header" class="sim-window-header sim-extend">
+						<h2>Key Performance Indicators (KPIs)</h2>
+						<ul class="sim-window-header-icon">
+							<!-- <li class="min-icon">min</li> -->
+							<li class="grid-view-icon">grid</li>
+						</ul>
+					</div><!-- End of KPI Header -->
+					
+					<div id="sim-kpi-content">
+						<div id="sim-kpi-content-left" class="sim-subwindow-container">
+						
+							<div id="sim-kpi-left-header" class="sim-window-header sim-subwindow-header">
+								<h3>List of KPIs</h3>
+								<ul class="sim-window-header-icon">
+									<li class="min-icon">min</li>
+									<li class="list-view-icon">list</li>
+								</ul>
+							</div><!-- End of KPI Left Header-->
+							
+							<div id="sim-kpi-left-content-list" class="sim-view-list sim-subwindow-content">
+								<!--
+								<section id="kpi-left-catg-drivers">
+									<h4>Drivers</h4>
+									<ul>
+										<li>
+											<span> > </span>
+											<img />
+											<p>GDP</p>
+											<ul class="sim-subicon">
+												<li class="add-icon">add</li>
+												<li class="show-icon">hide</li>
+												<li class="imprtnt-icon">imprt</li>
+											</ul>
+										</li>
+										<li>
+											<span> > </span>
+											<img />
+											<p>Population</p>
+											<ul class="sim-subicon">
+												<li class="add-icon">add</li>
+												<li class="show-icon">hide</li>
+												<li class="imprtnt-icon">imprt</li>
+											</ul>
+										</li>
+									</ul>
+								</section>
+								<section id="kpi-left-catg-water">
+									<h4>Drivers</h4>
+									<ul>
+										<li>
+											<span> > </span>
+											<img />
+											<p>water 1</p>
+											<ul class="sim-subicon">
+												<li class="add-icon">add</li>
+												<li class="show-icon">hide</li>
+												<li class="imprtnt-icon">imprt</li>
+											</ul>
+										</li>
+										<li>
+											<span> > </span>
+											<img />
+											<p>water 2</p>
+											<ul class="sim-subicon">
+												<li class="add-icon">add</li>
+												<li class="show-icon">hide</li>
+												<li class="imprtnt-icon">imprt</li>
+											</ul>
+										</li>
+										<li>
+											<span> > </span>
+											<img />
+											<p>water 3</p>
+											<ul class="sim-subicon">
+												<li class="add-icon">add</li>
+												<li class="show-icon">hide</li>
+												<li class="imprtnt-icon">imprt</li>
+											</ul>
+										</li>
+									</ul>
+								</section> -->
+							</div><!-- End of Left KPIs Content -->
+						
+						</div><!-- End of Left KPI -->
+						
+						<div id="sim-kpi-content-right-wrapper">
+							<div id="sim-kpi-content-right">
+								
+								<!-- <div class="sim-kpi-vis">
+									<div class="sim-kpi-vis-header sim-window-header">
+										<h2>Selected KPI Title</h2>
+										<ul class="sim-window-header-icon">
+											<li class="min-icon">min</li>
+											<li class="grid-view-icon">grid</li>
+										</ul>
+									</div><!-- End of KPI Vis Header -->
+									
+									<!-- <div  id="myLine2" class="sim-kpi-vis-content">
+										
+									</div><!-- End of KPI Vis Content-->
+								<!-- </div><!-- End of KPI Vis -->
+								
+								
+								
+							</div><!-- End of KPI Right Content -->
+							
+						</div><!-- End of KPI Right Content Wrapper -->
+						
+					</div><!-- End of KPI Content -->
+					
+				</div><!-- End of KPI Container -->
+				
+			</div><!-- End of Simulation Content  -->
+			
+		</div><!-- End of Simulation Wrapper -->
+		
+		<footer class="footer-cc">
+		</footer><!--End Footer-->
+		
+	</body>
+	
+</html>

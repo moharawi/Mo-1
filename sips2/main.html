@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+	
+	<head>
+		<meta charset="utf-8" />
+		<title>SIPS Prototype 0.3</title>
+		<link rel="stylesheet" href="css/styles.css" type="text/css">
+		<link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+		
+		<!--[if IE]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+		<script type="text/javascript" src="js/functions.js"></script>
+		<script type="text/javascript" src="js/interactions.js"></script>
+		<script type="text/javascript" src="js/evaluations.js"></script>
+		
+		<script src="js/jquery-ui-1.8.23.custom.min.js"></script>
+
+	</head>
+	
+	
+	<body onload="initializeSize();">
+		
+		<header class="main-header-wrapper">
+			<div class="main-system">
+				<img src="img/sips.png"/>
+				<h1>SIPS</h1>
+				<span class="logout-icon"><a href="login.html">Logout</a></span>
+			</div>
+			
+			<div class="main-user">
+				<nav>
+					<ul>
+						<li class="main-icon selected"><a href="main.html">Main</a></li>
+						<li class="simulation-icon"><a href="simulation.html">Simulation</a></li>
+						<li class="reporting-icon"><a href="reporting.html">Reporting</a></li>
+						<li class="setting-icon"><a href="#">Setting</a></li>
+					</ul>
+				</nav>
+				<h2> Hallo, <span class="main-usernmae">Mohammad</span></h2>
+			</div>
+		</header>
+		
+		
+		<div class="left-panel" class="right-shadow">
+			<div id="lp-invtd">
+				<h2>Invitations</h2>
+				<ul class="lp-table">
+					<li>test invitation item 1</li>
+					<li>test invitation item 2</li>
+					<li>test invitation item 3</li>
+					<li>test invitation item 4</li>
+					<li>test invitation item 5</li>
+					<li>test invitation item 6</li>
+					<li>test invitation item 7</li>
+					<li>test invitation item 8</li>
+					<li>test invitation item 9</li>
+					<li>test invitation item 10</li>
+				</ul>
+			</div>
+			<div id="lp-shrd">
+				<h2>Shared Cases</h2>
+				<ul class="lp-table">
+					<li>test shared case 1</li>
+					<li>test shared case 2</li>
+					<li>test shared case 3</li>
+				</ul>
+			</div>
+		</div><!--End of Left Panel-->
+		
+		<div class="main-content">
+			<div id="main-cases">
+				<h1>My Cases</h1>
+				<input type="button" value="New Case"/>
+				<div class="main-cases-wrapper">
+					<ul>
+						<!-- This is for manual testing -->
+						<!--<li>
+							<img src="#"/>
+							<h2>Case 1</h2>
+							<p>case 1 mini description</p>
+						</li>-->
+					</ul>
+				</div>
+			</div><!--End of My Cases List-->
+			
+			<div class="main-selected-case-wrapper">
+				<div class="main-selected-case">
+					<h1>*Selected Case Title*</h1>
+					<div class="main-selected-case-left">
+						<div class="case-layout">
+							<img src="img/sips.png" />
+						</div>
+					</div>
+					<div class="main-selected-case-center">
+						<div class="main-selected-dsc">
+							<h2>Description</h2>
+							<p>Instructional Text. Praesent vitae dolor sit amet lectus interdum laoreet. Nullam tristique aliquet justo. Phasellus mauris mi, vehicula at, rhoncus in, hendrerit sed, arcu. Integer sit amet felis. </p>
+						</div>
+						<div class="main-selected-opt">
+							<input type="button" name="case-edit" value="Edit Case"/>
+							<input type="button" name="case-report-create" value="Create Report"/>
+							<input type="button" name="case-duplicate" value="Duplicate Case"/>
+							<input type="button" name="case-share" value="Share"/>
+						</div>
+					</div>
+					<div class="main-selected-case-right">
+						<h2>Scenarios</h2>
+						<input type="button" value="New Scenario"/>
+						<ul>
+							<!-- This is for manual testing -->
+							<!-- <li>Scenario 1</li>
+							<li>Scenario 2</li>
+							<li>Scenario 3</li> -->
+						</ul>
+					</div>
+				</div><!--End of Selected Case Details-->
+				
+				<div class="main-selected-scenario">
+					<h1>Selected Scenario Details</h1>
+						<div id="main-scenario-sh">
+							<h2>List of Stakeholders</h2>
+							<ul>
+								<li>stakeholder 1</li>
+								<li>stakeholder 2</li>
+								<li>stakeholder 3</li>
+							</ul>
+						</div>
+						<div id="main-scenario-dv">
+							<h2>List of Decision Variables</h2>
+							<ul>
+								<li>DV 1</li>
+								<li>DV 2</li>
+								<li>DV 3</li>
+								<li>DV 1</li>
+								<li>DV 2</li>
+								<li>DV 3</li>
+								<li>DV 1</li>
+								<li>DV 2</li>
+								<li>DV 3</li>
+							</ul>
+						</div>
+						<div id="main-scenario-kpi">
+							<h2>List of KPIs</h2>
+							<ul>
+								<li>KPI 1</li>
+								<li>KPI 2</li>
+								<li>KPI 3</li>
+							</ul>
+						</div>
+				</div><!-- End of Selected Scenario Details -->
+				
+			</div><!-- End of Selected Case Wrapper -->
+			<div class="main-content-blocked"></div>
+			<div id="main-new-case-container">
+				<div id="main-new-case-header">
+					<h1>Create a new case</h1>
+				</div><!-- End of New Case Header -->
+				<div id="main-new-case-content-wrapper">
+					<form id="main-new-case-form">
+						<div id="main-new-case-title" class="main-new-case-form-align">
+							<label for="case-title" id="case-title-label">Case Title</label>
+							<input type="text" name="title" id="case-title" />
+							<label class="error" for="case-title" id="case-title-error">This field is required.</label>
+						</div>
+						<div id="main-new-case-desc" class="main-new-case-form-align">
+							<label for="case-desc" id="case-desc-label">Case Description</label>
+							<textarea type="text" name="description" id="case-desc"></textarea>
+							<label class="error" for="case-desc" id="case-desc-error">This field is required.</label>
+						</div>
+						<div id="main-new-case-scale" class="main-new-case-form-align">
+							<label for="sim-scale" id="sim-scale-label">Simulation Scale</label>
+							<select type="text" name="scale" id="sim-scale">
+								<option value="national">National</option>
+								<option value="riyadh">----------</option>
+								<option value="riyadh">Riyadh</option>
+								<option value="makkah">Makkah</option>
+								<option value="qasim">Qasim</option>
+								<option value="najran">Najran</option>
+							</select>
+							<label class="error" for="sim-scale" id="sim-scale-error">This field is required.</label>
+						</div>
+						<div id="main-new-case-date" class="main-new-case-form-align">
+							<label for="sim-date-from" id="sim-date-from-label">Simulation Date</label>
+							<input type="text" name="from-date" id="sim-date-from" />
+							<label for="sim-date-to" id="sim-date-to-label">To</label>
+							<input type="text" name="to-date" id="sim-date-to" />
+							<label class="error" for="sim-date-to" id="sim-date-to-error">This field is required.</label>
+						</div>
+						<div id="main-new-case-sh" class="main-new-case-form-align">
+							<label for="case-sh" id="case-sh-label">Add Stakeholder</label>
+							<select type="text" name="stake-holder" id="case-sh">
+								<option value="national">MEP</option>
+								<option value="riyadh">MWE</option>
+								<option value="riyadh">Stakeholder 3</option>
+								<option value="makkah">Stakeholder 4</option>
+								<option value="qasim">Stakeholder 5</option>
+								<option value="najran">Stakeholder 6</option>
+							</select>
+							<label class="error" for="case-sh" id="case-sh-error">This field is required.</label>
+							<div class="case-sh-list-wrapper">
+								<ul>
+									<li>Stakeholder 3 <span>x</spn></li>
+									<li>Stakeholder 5 <span>x</spn></li>
+								</ul>
+							</div>
+						</div>
+						<div id="main-new-case-create" class="main-new-case-form-align">
+							<input type="button" name="cancel" id="case-cancel" value="Cancel"/>
+							<input type="button" name="add" id="case-add" value="Add"/>
+						</div>
+					</form><!-- End of New Case Form -->
+				</div><!-- End of New Case Content -->
+			</div><!-- End of New Case Container -->
+			
+		</div><!-- End of Main Contents -->
+		
+		<footer class="footer-cc">
+		</footer><!-- End Footer -->
+		
+	</body>
+	
+</html>

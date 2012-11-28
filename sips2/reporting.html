@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+	
+	<head>
+		<meta charset="utf-8" />
+		<title>SIPS Prototype 0.3</title>
+		<link rel="stylesheet" href="css/styles.css" type="text/css">
+		<link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+		
+		<!--[if IE]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+
+	</head>
+	
+	
+	<body>
+		
+		<header class="main-header-wrapper">
+			<div class="main-system">
+				<img src="img/sips.png"/>
+				<h1>*SIPS*</h1>
+				<span><a href="login.html">logout</a></span>
+			</div>
+			
+			<div class="main-user">
+				<nav>
+					<ul>
+						<li><a href="main.html">Main</a></li>
+						<li><a href="simulation.html">Simulation</a></li>
+						<li class="selected"><a href="reporting.html">Reporting</a></li>
+						<li><a href="#">Settings</a></li>
+					</ul>
+				</nav>
+				<h2> Welcome, <span class="main-usernmae">*user first name*</span></h2>
+			</div>
+		</header>
+		
+		
+		<div class="left-panel">
+			<div id="lp-invtd">
+				<h2>My Cases</h2>
+				<ul class="lp-table">
+					<li>test invitation item 1</li>
+					<li>test invitation item 2</li>
+					<li>test invitation item 3</li>
+					<li>test invitation item 4</li>
+					<li>test invitation item 5</li>
+					<li>test invitation item 6</li>
+					<li>test invitation item 7</li>
+					<li>test invitation item 8</li>
+					<li>test invitation item 9</li>
+					<li>test invitation item 10</li>
+				</ul>
+			</div>
+			<div id="lp-shrd">
+				<h2>Shared Cases</h2>
+				<ul class="lp-table">
+					<li>test shared case 1</li>
+					<li>test shared case 2</li>
+					<li>test shared case 3</li>
+				</ul>
+			</div>
+		</div><!--End of Left Panel-->
+		
+		<div class="main-content">
+			<div id="main-selected-case">
+				<h1>*Selected Case Title*</h1>
+				<div id="main-selected-case-left">
+					<div class="case-layout">
+						<img src="#" />
+					</div>
+				</div>
+				<div id="main-selected-case-center">
+					<div class="main-selecte-dsc">
+						<h2>Description</h2>
+						<p>Instructional Text. Praesent vitae dolor sit amet lectus interdum laoreet. Nullam tristique aliquet justo. Phasellus mauris mi, vehicula at, rhoncus in, hendrerit sed, arcu. Integer sit amet felis. </p>
+					</div>
+					<div class="main-selecte-opt">
+						<input type="button" value="Edit Case"/>
+						<input type="button" value="Create Report"/>
+						<input type="button" value="Duplicate Case"/>
+						<input type="button" value="Share"/>
+					</div>
+				</div>
+				<div id="main-selected-case-right">
+					<h2>Scenarios</h2>
+					<input type="button" value="New Scenario"/>
+					<ul>
+						<li>Scenario 1</li>
+						<li>Scenario 2</li>
+						<li>Scenario 3</li>
+					</ul>
+				</div>
+			</div><!--End of Selected Case Details-->
+			
+			<div id="main-selected-scenario">
+				<h1>Selected Scenario Details</h1>
+					<div id="main-scenario-sh">
+						<h2>List of Stakeholders</h2>
+						<ul>
+							<li>stakeholder 1</li>
+							<li>stakeholder 2</li>
+							<li>stakeholder 3</li>
+						</ul>
+					</div>
+					<div id="main-scenario-dv">
+						<h2>List of Decision Variables</h2>
+						<ul>
+							<li>DV 1</li>
+							<li>DV 2</li>
+							<li>DV 3</li>
+							<li>DV 1</li>
+							<li>DV 2</li>
+							<li>DV 3</li>
+							<li>DV 1</li>
+							<li>DV 2</li>
+							<li>DV 3</li>
+						</ul>
+					</div>
+					<div id="main-scenario-kpi">
+						<h2>List of KPIs</h2>
+						<ul>
+							<li>KPI 1</li>
+							<li>KPI 2</li>
+							<li>KPI 3</li>
+						</ul>
+					</div>
+			</div><!--End of Selected Scenario Details-->
+		</div>
+		
+		<footer class="footer-cc">
+		</footer><!--End Footer-->
+		
+	</body>
+	
+</html>
